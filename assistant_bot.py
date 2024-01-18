@@ -8,17 +8,15 @@ def input_error(func):
             return "The user already exists."
         except IndexError:
             return "Invalid format. Enter name and phone number."
-        # except TypeError:
-        #     return "Invalid data type."
     return inner
 
 
 @input_error
 def add_contact(phone_book, name, number):
-    '''
+    """
     The function adds the username and number to the phone book using the command:
     add <name> <number>
-    '''
+    """
     if name in phone_book:
         raise ValueError
     phone_book[name] = number
@@ -27,10 +25,10 @@ def add_contact(phone_book, name, number):
 
 @input_error
 def update_contact(phone_book, name, number):
-    '''
+    """
     The function overwrites the existing user's number with the command:
     zmień <existing user> <new number>
-    '''
+    """
     if name not in phone_book:
         raise KeyError
     phone_book[name] = number
@@ -39,21 +37,20 @@ def update_contact(phone_book, name, number):
 
 @input_error
 def find_number(phone_book, name):
-    '''
+    """
     The function searches for a user's number by his name using the command:
     phone <user>
-    '''
+    """
     if name not in phone_book:
         raise KeyError
     return phone_book[name]
 
 
-# @input_error
 def show_all_contacts(phone_book):
-    '''
+    """
     The function displays the entire phone book using the command:
     show all
-    '''
+    """
     return "\n".join([f"{name}: {number}" for name, number in phone_book.items()])
 
 
@@ -65,7 +62,7 @@ def main():
 
         if '.' in command:
             break
-        elif command == "good bye" or command == "close" or command == "exit":
+        elif command in ['good bye', 'close', 'exit']:
             print("Good bye!")
             break
         elif command == "hello":
